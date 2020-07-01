@@ -1,16 +1,16 @@
 package com.example.test.qrcode_to_database;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.zxing.Result;
 
@@ -35,7 +35,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZXingSca
 
         if (currentVersion > Build.VERSION_CODES.M) {
             if (checkPermission()) {
-                Toast.makeText(getApplicationContext(), "Permission Deny.", Toast.LENGTH_SHORT);
+//                Toast.makeText(getApplicationContext(), "Permission Deny.", Toast.LENGTH_SHORT).show();
             } else {
                 requestPermission();
             }
@@ -51,7 +51,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZXingSca
         return PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(getApplicationContext(), CAMERA);
     }
 
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case REQUEST_CAMERA:
                 if (grantResults.length > 0) {
@@ -123,7 +123,7 @@ public class QRcodeScannerActivity extends AppCompatActivity implements ZXingSca
         final String myResult = result.getText();
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
-        Toast.makeText(getApplicationContext(), myResult, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), myResult, Toast.LENGTH_SHORT).show();
 //        scannerView.resumeCameraPreview(this);
         getIntent().putExtra("MSG", myResult);
         setResult(RESULT_OK, getIntent());
