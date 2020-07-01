@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTvResult;
     private Button mBtnScanQRCode;
     private Button mBtnSendQuery;
+    private Button mBtnMap;
 
     private String qrcode_msg = "";
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mTvResult = findViewById(R.id.mTvResult);
         mBtnScanQRCode = findViewById(R.id.mBtnScanQRCode);
         mBtnSendQuery = findViewById(R.id.mBtnSendQuery);
+        mBtnMap = findViewById(R.id.mBtnMap);
         
         mBtnScanQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 sendQuery();
             }
         });
-        
+        mBtnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EventMapActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public static String getJSONString(String rawJson, String key) {

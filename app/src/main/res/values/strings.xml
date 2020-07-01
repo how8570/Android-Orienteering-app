@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QRcode_to_database</string>
+    <string name="title_activity_event_map">Map</string>
+    <string name="qrcode_scan">QRCode Scan</string>
 </resources>
