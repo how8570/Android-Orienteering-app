@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class EventMapActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -58,19 +59,24 @@ public class EventMapActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in taipei and move the camera
         final LatLng TAIPEI_STATION = new LatLng(25.046273, 121.517498);
         final LatLng ZHONGSHAN_STATION = new LatLng(25.052811, 121.520434);
-        mMap.addMarker(new MarkerOptions()
+
+        Marker taipeiStation = mMap.addMarker(new MarkerOptions()
                 .position(TAIPEI_STATION)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 .alpha(0.7f)
                 .title("台北車站"));
-        mMap.addMarker(new MarkerOptions()
+
+        Marker zhongshanStation = mMap.addMarker(new MarkerOptions()
                 .position(ZHONGSHAN_STATION)
                 .title("中山車站")
                 .snippet("尚未跑過"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TAIPEI_STATION, 14));
+
+        // method to change color
+        zhongshanStation.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
     }
 
 }

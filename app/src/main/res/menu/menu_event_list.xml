@@ -7,10 +7,5 @@
         android:icon="@drawable/ic_refresh_black_24dp"
         android:title="@string/refresh"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/QRCode_scan"
-        android:icon="@drawable/ic_scan"
-        android:title="@string/qrcode_scan"
-        app:showAsAction="ifRoom" />
 
 </menu>

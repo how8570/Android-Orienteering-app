@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnScanQRCode;
     private Button mBtnSendQuery;
     private Button mBtnMap;
+    private Button mBtnEventList;
 
     private String qrcode_msg = "";
 
@@ -47,11 +48,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        findView();
+
+        setOnClickListener();
+
+    }
+
+    private void findView() {
         mTvResult = findViewById(R.id.mTvResult);
         mBtnScanQRCode = findViewById(R.id.mBtnScanQRCode);
         mBtnSendQuery = findViewById(R.id.mBtnSendQuery);
         mBtnMap = findViewById(R.id.mBtnMap);
-        
+        mBtnEventList = findViewById(R.id.mBtnEventList);
+    }
+
+    private void setOnClickListener() {
         mBtnScanQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EventMapActivity.class);
+                startActivity(intent);
+            }
+        });
+        mBtnEventList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EventListActivity.class);
                 startActivity(intent);
             }
         });
