@@ -14,6 +14,7 @@ public class EventHolder extends RecyclerView.ViewHolder implements View.OnClick
     ImageView mImageView;
     TextView mTitle;
     TextView mDescription;
+    String eventUUID;
     EventClickListener eventClickListener;
 
     EventHolder(@NonNull View itemView) {

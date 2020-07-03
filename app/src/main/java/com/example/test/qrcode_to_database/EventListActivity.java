@@ -1,7 +1,6 @@
 package com.example.test.qrcode_to_database;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -47,6 +46,7 @@ public class EventListActivity extends AppCompatActivity {
         toolbar.findViewById(R.id.Refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                events = new ArrayList<>();
                 eventAdapter = new EventAdapter(v.getContext(), getList());
                 mRecyclerList.setAdapter(eventAdapter);
                 Toast.makeText(getApplicationContext(), "嘗試更新，完成", Toast.LENGTH_SHORT).show();
@@ -60,7 +60,6 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private ArrayList<Event> getList() {
-
 
         JSONArray jsonArray = getResponse();
 
@@ -76,14 +75,13 @@ public class EventListActivity extends AppCompatActivity {
                 Event e = new Event();
                 e.setTitle(json.getString("title"));
                 e.setDescription(json.getString("content"));
+                e.setEventUUID(json.getString("eventUUID"));
                 e.setImg(R.mipmap.ic_launcher);
                 events.add(e);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
-
 
         return events;
     }
@@ -121,13 +119,11 @@ public class EventListActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Log.d("##check response", response.toString());
         JSONArray json = null;
         try {
             json = new JSONArray(response.toString());
         } catch (JSONException e) {
             e.printStackTrace();
-
         }
 
         return json;

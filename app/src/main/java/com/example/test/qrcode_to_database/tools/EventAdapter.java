@@ -2,6 +2,7 @@ package com.example.test.qrcode_to_database.tools;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> {
         holder.mImageView.setImageResource(events.get(position).getImg());
         holder.mTitle.setText(events.get(position).getTitle());
         holder.mDescription.setText(events.get(position).getDescription());
+        holder.eventUUID = events.get(position).getEventUUID();
 
         holder.setEventClickListener(new EventClickListener() {
             @Override
             public void onEventClickListener(View v, int position) {
                 Intent intent = new Intent(context, EventMapActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title", events.get(position).getTitle());
+                bundle.putString("eventUUID", events.get(position).getEventUUID());
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });

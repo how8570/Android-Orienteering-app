@@ -5,16 +5,10 @@ public class Event {
     private int img;
     private String title;
     private String description;
+    private String eventUUID;
 
     public Event() {
         super();
-    }
-
-    public Event(int img, String title, String description) {
-        super();
-        this.img = img;
-        this.title = title;
-        this.description = description;
     }
 
     public int getImg() {
@@ -39,5 +33,13 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEventUUID() {
+        return eventUUID;
+    }
+
+    public void setEventUUID(String eventUUID) {
+        this.eventUUID = eventUUID;
     }
 }
