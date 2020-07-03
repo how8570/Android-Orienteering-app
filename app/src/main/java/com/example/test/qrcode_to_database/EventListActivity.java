@@ -31,6 +31,8 @@ public class EventListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerList;
     private EventAdapter eventAdapter;
 
+    private ArrayList<Event> events = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class EventListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 eventAdapter = new EventAdapter(v.getContext(), getList());
                 mRecyclerList.setAdapter(eventAdapter);
-                Toast.makeText(getApplicationContext(), "更新完成", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "嘗試更新，完成", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -58,9 +60,15 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private ArrayList<Event> getList() {
-        ArrayList<Event> events = new ArrayList<>();
+
 
         JSONArray jsonArray = getResponse();
+
+        if (jsonArray == null) {
+            Toast.makeText(getApplicationContext(), "伺服器連線錯誤，請確認網路連線。"
+                    , Toast.LENGTH_LONG).show();
+            return events; // TODO make cache result
+        }
 
         for (int i = 0, size = jsonArray.length(); i < size; i++) {
             try {
@@ -102,7 +110,6 @@ public class EventListActivity extends AppCompatActivity {
                         response.append(line);
                         response.append("\r");
                     }
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
